@@ -1,33 +1,21 @@
-local Blips = {}
+local Blips = GlobalState.blips or {}
 local BlipObjects = {}
 
 -- create blip with uniqueId and data
-local function CreateBlip(uniqueId, data)
+---@param uniqueId any
+---@param data table
+function CreateBlip(uniqueId, data)
+    if not uniqueId or not data then return end
     if HasAccess(data.permissions) then
         local blip = AddBlipForCoord(data.coords.x, data.coords.y, data.coords.z)
         BlipObjects[uniqueId] = blip
-        SetBlipSprite(blip, data.Sprite)
-        SetBlipScale(blip, data.scale/10)
-        SetBlipColour(blip, data.sColor)
-        SetBlipAsShortRange(blip, data.sRange)
-
-        ShowTickOnBlip(blip, data.tickb)
-        ShowOutlineIndicatorOnBlip(blip, data.outline)
-        SetBlipAlpha(blip, data.alpha)
-
-        if data.bflash then
-            SetBlipFlashes(blip, true)
-            SetBlipFlashInterval(blip, data.ftimer)
-        end
-
-        if data.hideb then
-            SetBlipDisplay(blip, 3)
-        else
-            SetBlipDisplay(blip, 2)
-        end
-
+        SetBlipSprite(blip, data.sprite or 1)
+        SetBlipScale(blip, data.scale or 0.6)
+        SetBlipColour(blip, data.colour or 1)
+        SetBlipDisplay(blip, data.display or 8)
+        SetBlipAsShortRange(blip, data.srange or true)
         BeginTextCommandSetBlipName("STRING")
-        AddTextComponentString(data.name)
+        AddTextComponentString(data.name or 'Unknown')
         EndTextCommandSetBlipName(blip)
     else
         RemoveBlips(uniqueId)
@@ -41,7 +29,8 @@ function CreateBlips()
     end
 end
 
--- remove the blip if uniqueID id provided or else remove all exisiting blips
+---remove the blip if uniqueID id provided or else remove all exisiting blips
+---@param uniqueId any
 function RemoveBlips(uniqueId)
     if uniqueId then
         if BlipObjects[uniqueId] then
@@ -58,7 +47,8 @@ function RemoveBlips(uniqueId)
     end
 end
 
--- refreshes all blips
+---refreshes all blips
+---@param uniqueId any
 function RefreshBlips(uniqueId)
     RemoveBlips(uniqueId or false)
     if uniqueId then
@@ -68,8 +58,22 @@ function RefreshBlips(uniqueId)
     end
 end
 
+---get coordinates from waypoint or current player position
+---@param teleport boolean
+---@return vector3
+function GetCoords(teleport)
+    local pcoords = GetEntityCoords(PlayerPedId()).xyz
+    local blip = GetFirstBlipInfoId(8)
+    if blip ~= 0 then
+        local bcoords = GetBlipCoords(blip)
+        pcoords = vec3(bcoords.x, bcoords.y, pcoords.z)
+    end
+    if teleport then SetEntityCoords(PlayerPedId(), pcoords.x, pcoords.y, pcoords.z, false, false, false, false) end
+    return pcoords
+end
+
 -- listens the blips from server side and adds it to local table on client
-AddStateBagChangeHandler(nil, 'global', function(bagName, key, value, reserved, replicated)
+AddStateBagChangeHandler(nil, 'global', function(_, key, value, _, _)
     if key == 'blips' then
         Blips = value
         RefreshBlips()
@@ -80,3 +84,4 @@ end)
 exports('CreateBlip', CreateBlip)
 exports('RemoveBlips', RemoveBlips)
 exports('RefreshBlips', RefreshBlips)
+exports('GetCoords', GetCoords)
