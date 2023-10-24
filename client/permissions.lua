@@ -1,3 +1,5 @@
+-- WIP (Work in Progress)
+
 --- check if has access to the provided blip
 ---@param permissions any
 ---@return boolean

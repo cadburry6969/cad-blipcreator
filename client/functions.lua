@@ -10,7 +10,7 @@ function CreateBlip(uniqueId, data)
         local blip = AddBlipForCoord(data.coords.x, data.coords.y, data.coords.z)
         BlipObjects[uniqueId] = blip
         SetBlipSprite(blip, data.sprite or 1)
-        SetBlipScale(blip, data.scale or 0.6)
+        SetBlipScale(blip, (data.scale/10) or 0.6)
         SetBlipColour(blip, data.colour or 1)
         SetBlipDisplay(blip, data.display or 8)
         SetBlipAsShortRange(blip, data.srange or true)

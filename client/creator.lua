@@ -7,9 +7,9 @@ local function AddBlip(uniqueId, data, teleport)
     local input = lib.inputDialog(uniqueId and 'Edit Blip' or 'Add Blip', {
         {type = 'input', label = 'Name', description = 'Enter the name of blip', icon = 'fa-solid fa-tags', required = true, default = data?.name, min = 1},
         {type = 'number', label = 'Sprite', description = 'Enter blip sprite', icon = 'fa-solid fa-icons', required = true, default = data?.sprite, min = 1, step = 1},
-        {type = 'number', label = 'Scale', description = 'Enter blip scale', icon = 'fa-solid fa-text-width', required = true, default = data?.scale, min = 0},
+        {type = 'number', label = 'Scale', description = 'Enter blip scale', icon = 'fa-solid fa-text-width', required = true, default = data?.scale or 10, min = 0},
         {type = 'number', label = 'Colour', description = 'Enter blip colour', icon = 'fa-solid fa-droplet', required = true, default = data?.colour, min = 1},
-        {type = 'select', label = 'Show', description = 'Select blip display type', icon = 'fa-solid fa-eye', required = true, default = data?.display, options = {
+        {type = 'select', label = 'Show', description = 'Select blip display type', icon = 'fa-solid fa-eye', required = true, default = data?.display or 8, options = {
             { label = "Doesn't show up, ever, anywhere.", value = 0 },
             { label = "Shows on both main map and minimap. (Selectable)", value = 2 },
             { label = "Shows on main map only. (Selectable)", value = 3 },
