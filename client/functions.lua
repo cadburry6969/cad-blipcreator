@@ -1,6 +1,13 @@
 local Blips = GlobalState.blips or {}
 local BlipObjects = {}
 
+---Cut short the decimalPlaces
+---@return any
+function Round(num, numDecimalPlaces)
+    if not numDecimalPlaces then return math.floor(num + 0.5) end
+	return tonumber(string.format("%." .. (numDecimalPlaces or 0) .. "f", num))
+end
+
 -- create blip with uniqueId and data
 ---@param uniqueId any
 ---@param data table
@@ -68,7 +75,7 @@ function GetCoords(teleport)
         local bcoords = GetBlipCoords(blip)
         pcoords = vec3(bcoords.x, bcoords.y, pcoords.z)
     end
-    if teleport then SetEntityCoords(PlayerPedId(), pcoords.x, pcoords.y, pcoords.z, false, false, false, false) end
+    if teleport then SetEntityCoords(PlayerPedId(), Round(pcoords.x, 2), Round(pcoords.y, 2), Round(pcoords.z, 2), false, false, false, false) end
     return pcoords
 end
 

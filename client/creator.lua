@@ -39,12 +39,21 @@ local function BlipOptions(uniqueId, data)
     lib.registerContext({
         id = 'cad_blipoptions',
         title = 'Manage - '..data.name,
+        menu = 'cad_manage_blips',
         options = {
             {
                 title = 'Edit Blip',
                 icon = 'fa-solid fa-pen',
                 onSelect = function()
-                    AddBlip(uniqueId, data, false)
+                    AddBlip(uniqueId, data, Config.TeleportAtCoords)
+                end
+            },
+            {
+                title = 'Teleport To Blip',
+                icon = 'fa-solid fa-map-pin',
+                onSelect = function()
+                    local _coords = data.coords
+                    SetEntityCoords(PlayerPedId(), _coords.x, _coords.y, _coords.z, false, false, false, false)
                 end
             },
             {
@@ -66,7 +75,7 @@ local function ManageBlips()
     for uniqueId, data in pairs(blips) do
         options[#options+1] = {
             title = data.name,
-            description = tostring(data.coords),
+            description = ('vector3(%s, %s, %s)'):format(tostring(data.coords.x), tostring(data.coords.y), tostring(data.coords.z)),
             icon = 'fa-solid fa-map-pin',
             onSelect = function()
                 BlipOptions(uniqueId, data)
@@ -77,13 +86,14 @@ local function ManageBlips()
     lib.registerContext({
         id = 'cad_manage_blips',
         title = 'Manage Blips',
+        menu = 'cad_mainmenu_blips',
         options = options
     })
     lib.showContext('cad_manage_blips')
 end
 
--- command to open blip manager
-RegisterCommand('blipcreator', function()
+-- event to open blip manager
+RegisterNetEvent('cad-blipcreator:openMenu', function()
     lib.registerContext({
         id = 'cad_mainmenu_blips',
         title = 'Blips Menu',
@@ -92,7 +102,7 @@ RegisterCommand('blipcreator', function()
                 title = 'Create Blip',
                 icon = 'fa-solid fa-plus',
                 onSelect = function()
-                    AddBlip(nil, nil, true)
+                    AddBlip(nil, {}, Config.TeleportAtCoords)
                 end
             },
             {
@@ -105,4 +115,4 @@ RegisterCommand('blipcreator', function()
         }
     })
     lib.showContext('cad_mainmenu_blips')
-end, false)
+end)
