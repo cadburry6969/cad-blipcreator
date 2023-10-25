@@ -1,25 +1,23 @@
-# BlipCreator
+# Overview
+This is a simple resource that allows you to create blips on the go and ensures they are persistent over restarts. This repository contains the source code, making it easy for you to use and customize for your needs.
 
-> Overview
-This is a simple resource that allows you to create blips on the go and ensures they are persistent over restarts. This repository contains the source code for BlipCreator, making it easy for you to use and customize for your needs.
+# Preview
+[![Click Here](https://youtu.be/NK1RT8KVt5U)](https://youtu.be/NK1RT8KVt5U)
 
-> Preview
-![Coming Soon](https://discord.gg/qxGPARNwNP)
-
-> Features
+# Features
 - Create / Edit / Delete Blips
 - Teleport to editing blip
 - Blips persist even after restarting the server.
 - Permissions (Job, gang, etc) [WIP]
 
-> Dependencies
+# Dependencies
 - ox_lib
 
-> Usage
+# Usage
 - Make sure your identifier has ace permission for command in `server.cfg`
 - ensure the resource `cad-blipcreator`
 - Type command `/blipcreator` and you are good to go.
 
-> Contact
+# Contact
 - If you have any questions or need assistance, feel free to open an issue in this repository.
 - Join Discord: https://discord.gg/qxGPARNwNP
