@@ -116,3 +116,8 @@ RegisterNetEvent('cad-blipcreator:openMenu', function()
     })
     lib.showContext('cad_mainmenu_blips')
 end)
+
+AddEventHandler('onResourceStart', function (resourceName)
+    if (GetCurrentResourceName() ~= resourceName) then return end
+    RefreshBlips()
+end)
