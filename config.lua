@@ -1,3 +1,5 @@
 Config = {}
 
-Config.TeleportAtCoords = true
+Config.TeleportAtCoords = false
+
+Config.AdminOnlyCommand = false

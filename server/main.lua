@@ -42,4 +42,4 @@ end)
 RegisterCommand('blipcreator', function(source)
     if not source then return end
     TriggerClientEvent('cad-blipcreator:openMenu', source)
-end, true)
+end, Config.AdminOnlyCommand)
