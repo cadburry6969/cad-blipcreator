@@ -80,11 +80,9 @@ function GetCoords(teleport)
 end
 
 -- listens the blips from server side and adds it to local table on client
-AddStateBagChangeHandler(nil, 'global', function(_, key, value, _, _)
-    if key == 'blips' then
-        Blips = value
-        RefreshBlips()
-    end
+AddStateBagChangeHandler('blips', 'global', function(_, _, value)
+    Blips = value
+    RefreshBlips()
 end)
 
 -- exports to create / delete / refresh blips externally

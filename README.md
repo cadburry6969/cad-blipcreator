@@ -16,6 +16,7 @@ This is a simple resource that allows you to create blips on the go and ensures 
 # Usage
 - Make sure your identifier has ace permission for command in `server.cfg`
 - ensure the resource `cad-blipcreator`
+- edit permissions `config.lua` & `client/permissions.lua` (OPTIONAL)
 - Type command `/blipcreator` and you are good to go.
 
 # Contact

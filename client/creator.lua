@@ -18,6 +18,7 @@ local function AddBlip(uniqueId, data, teleport)
             { label = "Shows on both main map and minimap. (Not selectable)", value = 8 },
         }},
         {type = 'checkbox', label = 'Short Range', checked = data?.srange or true},
+        {type = 'select', label = 'Permissions', description = 'Permission to view this blip', icon = 'fa-solid fa-lock', required = false, default = data?.permissions or 'none', options = Config.Permissions},
     })
     if not input or not input[1] or not input[2] or not input[3] or not input[4] or not input[5] or not input[6] then return end
     local _data = {
@@ -27,7 +28,8 @@ local function AddBlip(uniqueId, data, teleport)
         scale = input[3],
         colour = input[4],
         display = input[5],
-        srange = input[6]
+        srange = input[6],
+        permissions = input[7],
     }
     TriggerServerEvent('cad-blipcreator:saveBlip', uniqueId, _data)
 end
