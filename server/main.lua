@@ -38,8 +38,9 @@ RegisterNetEvent('cad-blipcreator:removeBlip', function(uniqueId)
 end)
 
 -- command to open blip manager
--- Note: required ace permissions for the person accessing the command to be added in server.cfg
-RegisterCommand('blipcreator', function(source)
-    if not source then return end
+lib.addCommand('blipcreator', {
+    help = 'Create blips without server restart',
+    restricted = Config.AdminOnlyCommand and 'group.admin' or false
+}, function(source, args, raw)
     TriggerClientEvent('cad-blipcreator:openMenu', source)
-end, Config.AdminOnlyCommand)
+end)
