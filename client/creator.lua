@@ -119,7 +119,16 @@ RegisterNetEvent('cad-blipcreator:openMenu', function()
     lib.showContext('cad_mainmenu_blips')
 end)
 
-AddEventHandler('playerSpawned', function ()
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function ()
+    RefreshBlips()
+end)
+
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded',function (xPlayer, isNew, skin)
+    RefreshBlips()
+end)
+
+RegisterNetEvent('ox:playerLoaded', function (playerId, userId, charId)
     RefreshBlips()
 end)
 
