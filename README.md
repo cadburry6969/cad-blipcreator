@@ -2,7 +2,7 @@
 This is a simple resource that allows you to create blips on the go and ensures they are persistent over restarts. This repository contains the source code, making it easy for you to use and customize for your needs.
 
 # Preview
-![Click Here](https://img.youtube.com/vi/NK1RT8KVt5U/0.jpg)
+[![Click Here](https://img.youtube.com/vi/NK1RT8KVt5U/0.jpg)](https://www.youtube.com/watch?v=NK1RT8KVt5U)
 
 # Features
 - Create / Edit / Delete Blips
