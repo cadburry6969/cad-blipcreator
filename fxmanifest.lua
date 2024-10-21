@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'Cadburry (ByteCode Studios)'
 description 'Create blips on the go (standalone)'
-version '1.0'
+version '1.1'
 
 shared_scripts {
     '@ox_lib/init.lua',
@@ -12,11 +12,13 @@ shared_scripts {
 }
 
 client_scripts {
-    'client/*.lua',
+    'bridge/client/*.lua',
+    'modules/**/client.lua',
 }
 
 server_scripts {
-    'server/*.lua',
+    'bridge/server/*.lua',
+    'modules/**/server.lua',
 }
 
 dependencies {

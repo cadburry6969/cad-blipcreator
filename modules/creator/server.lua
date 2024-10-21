@@ -4,17 +4,17 @@ local Blips = {}
 -- update the blips to json file and state bag
 local function saveBlips()
     GlobalState.blips = Blips
-    SaveResourceFile(resourceName, 'blips.json', json.encode(Blips, { indent = true }), -1)
+    SaveResourceFile(resourceName, 'store/blips.json', json.encode(Blips, { indent = true }), -1)
 end
 
 -- initially load the blips to the local table
 CreateThread(function()
     Wait(100)
-    local blipsData = json.decode(LoadResourceFile(resourceName, 'blips.json'))
+    local blipsData = json.decode(LoadResourceFile(resourceName, 'store/blips.json'))
     if type(blipsData) == 'table' then
         Blips = blipsData
     else
-        SaveResourceFile(resourceName, 'blips.json', '[]', -1)
+        SaveResourceFile(resourceName, 'store/blips.json', '[]', -1)
         Blips = {}
     end
     GlobalState.blips = Blips

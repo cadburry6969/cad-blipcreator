@@ -79,6 +79,14 @@ function GetCoords(teleport)
     return pcoords
 end
 
+--- check if has access to the provided blip
+---@param permissions any
+---@return boolean
+function HasAccess(permissions)
+    if permissions == 'none' then return true end -- DONT REMOVE THIS
+    return HasPermission(permissions)
+end
+
 -- listens the blips from server side and adds it to local table on client
 AddStateBagChangeHandler('blips', 'global', function(_, _, value)
     Blips = value
