@@ -11,3 +11,7 @@ function HasPermission(permissions)
     end
     return false
 end
+
+RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
+    RefreshBlips()
+end)

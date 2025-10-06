@@ -11,3 +11,8 @@ function HasPermission(permissions)
     end
     return false
 end
+
+RegisterNetEvent("esx:setJob")
+AddEventHandler('esx:setJob', function(job, lastJob)
+    RefreshBlips()
+end)

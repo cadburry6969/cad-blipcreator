@@ -119,19 +119,6 @@ RegisterNetEvent('cad-blipcreator:openMenu', function()
     lib.showContext('cad_mainmenu_blips')
 end)
 
-RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function ()
-    RefreshBlips()
-end)
-
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded',function (xPlayer, isNew, skin)
-    RefreshBlips()
-end)
-
-RegisterNetEvent('ox:playerLoaded', function (playerId, userId, charId)
-    RefreshBlips()
-end)
-
 AddEventHandler('onResourceStart', function (resourceName)
     if (GetCurrentResourceName() ~= resourceName) then return end
     RefreshBlips()
