@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'Cadburry (ByteCode Studios)'
 description 'Create blips on the go (standalone)'
-version '1.1'
+version '1.2'
 
 shared_scripts {
     '@ox_lib/init.lua',
