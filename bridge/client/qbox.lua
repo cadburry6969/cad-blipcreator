@@ -10,6 +10,10 @@ function HasPermission(permissions)
     return false
 end
 
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    RefreshBlips()
+end)
+
 RegisterNetEvent('QBCore:Client:OnJobUpdate', function(job)
     RefreshBlips()
 end)

@@ -12,6 +12,10 @@ function HasPermission(permissions)
     return false
 end
 
+RegisterNetEvent('esx:playerLoaded', function (xPlayer, skin)
+    RefreshBlips()
+end)
+
 RegisterNetEvent("esx:setJob")
 AddEventHandler('esx:setJob', function(job, lastJob)
     RefreshBlips()

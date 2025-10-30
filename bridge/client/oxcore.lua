@@ -12,6 +12,10 @@ function HasPermission(permissions)
     return false
 end
 
+AddEventHandler('ox:playerLoaded', function(playerId, isNew)
+    RefreshBlips()
+end)
+
 AddEventHandler('ox:setGroup', function(playerId, groupName, grade)
     RefreshBlips()
 end)
