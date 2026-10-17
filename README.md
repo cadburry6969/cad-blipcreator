@@ -1,4 +1,4 @@
-# cad-blipcreator
+# Blipcreator
 
 An in-game blip editor for FiveM. Create, edit and delete map blips without restarting the server, give them your own PNG or SVG icons, and limit them to jobs or gangs. Other resources can add their own blips through exports, including blips that follow players or vehicles.
 
