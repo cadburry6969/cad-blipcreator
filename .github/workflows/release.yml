@@ -1,0 +1,54 @@
+# Builds the resource zip and adds it to a GitHub release when a version tag is pushed:
+#   git tag v2.0.0
+#   git push origin v2.0.0
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Build the editor UI
+        working-directory: web
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          npm run build
+
+      - name: Package the resource
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          stage="dist/cad-blipcreator"
+
+          mkdir -p "$stage/web"
+          cp -r client data server shared store "$stage/"
+          cp -r web/build "$stage/web/build"
+          cp .gitattributes .gitignore config.lua fxmanifest.lua LICENSE README.md "$stage/"
+
+          # the zip's fxmanifest gets the version from the tag
+          sed -i "s/^version '.*'/version '$version'/" "$stage/fxmanifest.lua"
+
+          cd dist
+          zip -r -q cad-blipcreator.zip cad-blipcreator
+
+      - name: Publish the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/cad-blipcreator.zip
+          generate_release_notes: true
