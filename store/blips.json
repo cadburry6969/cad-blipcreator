@@ -1,16 +1,49 @@
 {
-    "1698163614": {
-        "sprite": 77,
-        "display": 2,
-        "name": "Legion Square",
-        "coords": {
-            "x": 197.23728942871095,
-            "y": -935.7161865234375,
-            "z": 30.68681144714355
+    "icons": {},
+    "blips": {
+        "1698163614": {
+            "radiusAlpha": 128,
+            "removeOnDrop": true,
+            "permissions": "none",
+            "label": "Legion Square",
+            "scale": 1.0,
+            "display": 2,
+            "coords": {
+                "y": -935.7161865234375,
+                "z": 30.68681144714355,
+                "x": 197.23728942871094
+            },
+            "colour": 3,
+            "sprite": 77,
+            "iconFallback": true,
+            "shortRange": true,
+            "iconSize": 24,
+            "alpha": 255
         },
-        "colour": 3,
-        "srange": true,
-        "permissions": "none",
-        "scale": 100
+        "blip_1792243333_1": {
+            "radiusAlpha": 128,
+            "removeOnDrop": true,
+            "coords": {
+                "y": -829.7278442382812,
+                "z": 30.9095458984375,
+                "x": -88.0528564453125
+            },
+            "label": "Asphalt Medicals",
+            "colour": 0,
+            "sprite": 1,
+            "shortRange": true,
+            "icon": "example_png",
+            "iconFallback": true,
+            "categoryLabel": "A",
+            "scale": 0.75,
+            "alpha": 255,
+            "iconSize": 18,
+            "category": 12,
+            "radiusColour": 6,
+            "permissions": "none",
+            "flash": false,
+            "radius": 100.0,
+            "display": 2
+        }
     }
 }
